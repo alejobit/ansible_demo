@@ -1,0 +1,15 @@
+---
+- name: Instalar servidor web y página web estática
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Asegurar que nginx se encuentre actualizado
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Actualizar página web estática
+      template:
+        src: index.j2
+        dest: /var/www/html/index.html
